@@ -9,4 +9,5 @@ urlpatterns = [
     path('create_url/', views.CreateShortenedUrlView.as_view(), name='create_url'),
     path('shorted_urls/', views.UrlListView.as_view(), name='url_list'),
     path('shorted_url/<pk>', views.UrlDetailView.as_view(), name='url_detail'),
+    path('<str:url_part>/', views.UrlRedirectView.as_view(), name='redirect'),
 ]

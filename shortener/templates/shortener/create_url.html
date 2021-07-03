@@ -19,7 +19,7 @@
 
 		{% if shortened_url %}
 			<div class="alert alert-success" role="alert"> 
-					URL successfully created: <a href="#">{{ shortened_url }}</a>
+					URL successfully created: <a href="{% url 'shortener:url_detail' new_url_id %}">{{ shortened_url }}</a>
 			</div>
 		{% endif %}
 

@@ -1,7 +1,7 @@
 import random
 import string
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView
 
@@ -29,6 +29,7 @@ class CreateShortenedUrlView(View):
     def post(self, request):
         form = CreateShortenedUrlForm(request.POST)
         shortened_url = None
+        new_url_id = None
         if form.is_valid():
             existed_urls = [url.shortened_url for url in ShortenedUrl.objects.all()]
             while True:
@@ -39,9 +40,11 @@ class CreateShortenedUrlView(View):
             new_url.shortened_url = shortened_url
             new_url.original_url = form.cleaned_data['original_url']
             new_url.save()
+            new_url_id = new_url.pk
 
         return render(request, 'shortener/create_url.html', {'form': form,
-                                                             'shortened_url': shortened_url})
+                                                             'shortened_url': shortened_url,
+                                                             'new_url_id': new_url_id})
 
 
 class UrlListView(ListView):
@@ -52,3 +55,9 @@ class UrlListView(ListView):
 class UrlDetailView(DetailView):
     model = ShortenedUrl
     context_object_name = 'url'
+
+
+class UrlRedirectView(View):
+    def get(self, request, url_part):
+        url = ShortenedUrl.objects.get(shortened_url=f'{DOMAIN}/{url_part}')
+        return redirect(url.original_url)
