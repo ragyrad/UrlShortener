@@ -1,8 +1,9 @@
 import random
 import string
 
-from django.views import View
 from django.shortcuts import render
+from django.views import View
+from django.views.generic import ListView
 
 from .forms import CreateShortenedUrlForm
 from .models import ShortenedUrl
@@ -41,3 +42,8 @@ class CreateShortenedUrlView(View):
 
         return render(request, 'shortener/create_url.html', {'form': form,
                                                              'shortened_url': shortened_url})
+
+
+class UrlListView(ListView):
+    model = ShortenedUrl
+    context_object_name = 'url_list'
