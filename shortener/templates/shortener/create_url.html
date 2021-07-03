@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+	Create URL
+{% endblock title %}
+
+
+{% block content %}
+	<div class="col-6">
+		<h1>Creating a new shortened url</h1>
+
+		<form method="post">
+			{% csrf_token %}
+			{{ form|crispy }}
+			<button type="submit" class="btn btn-outline-dark">Create</button>
+		</form>
+
+		{% if shortened_url %}
+			<div class="alert alert-success" role="alert"> 
+					URL successfully created: <a href="#">{{ shortened_url }}</a>
+			</div>
+		{% endif %}
+
+	</div>
+{% endblock content %}

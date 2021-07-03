@@ -10,7 +10,7 @@
 		<h1>Url Shortener</h1>
 
 		<p>Here you can create a new shortened url</p>
-		<a href="#" type="button" class="btn btn-outline-dark">Create</a>
+		<a href="{% url 'shortener:create_url' %}" type="button" class="btn btn-outline-dark">Create</a>
 		<p>Here you can see the list of shortened urls</p>
 		<a href="#" type="button" class="btn btn-outline-dark">View the list</a>
 	</div>
