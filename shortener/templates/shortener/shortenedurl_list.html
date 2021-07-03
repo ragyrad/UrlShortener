@@ -12,10 +12,10 @@
         <ul class="list-group">
             {% for url in url_list %}
                 <li class="list-group-item">
-                    <a href="#">{{ url.shortened_url }}</a>
+                    <a href="{% url 'shortener:url_detail' url.pk %}">{{ url.shortened_url }}</a>
                 </li>
             {% endfor %}
         </ul>
     </div>
-    
+
 {% endblock %}

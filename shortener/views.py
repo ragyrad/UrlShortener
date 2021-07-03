@@ -3,7 +3,7 @@ import string
 
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .forms import CreateShortenedUrlForm
 from .models import ShortenedUrl
@@ -47,3 +47,8 @@ class CreateShortenedUrlView(View):
 class UrlListView(ListView):
     model = ShortenedUrl
     context_object_name = 'url_list'
+
+
+class UrlDetailView(DetailView):
+    model = ShortenedUrl
+    context_object_name = 'url'

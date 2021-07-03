@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    URL
+{% endblock title %}
+
+{% block content %}
+    
+    <div class="col-6">
+
+        <h5>Original URL: </h5> <p>{{ url.original_url }}</p>
+        <a href="{{ url.original_url }}" type="button" class="btn btn-outline-dark">Go to the web site</a>
+    </div>
+    
+{% endblock %}
